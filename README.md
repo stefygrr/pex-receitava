@@ -1,1 +1,1 @@
-# pex-receitava
+# Receitava
