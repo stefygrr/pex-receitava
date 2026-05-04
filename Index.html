@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receitava</title>
+    <link rel="icon" type="image/png" href="img/aba.png">
+    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <a class="logo" href="#" onclick="showPage('home')">
+            <img class="logo-icon" src="img/logo.png" alt="">
+            <span class="logo-text">Receitava</span>
+        </a>
+        <nav>
+            <button class="active" id="nav-home" onclick="showPage('home', this)">🏠 Início</button>
+            <button id="nav-receitas" onclick="showPage('receitas', this)">📚 Receitas</button>
+            <button id="nav-nova" onclick="showPage('nova', this)">✏️ Nova Receita</button>
+            <button id="nav-busca" onclick="showPage('busca', this)">🔍 Buscar por Ingrediente</button>
+
+        </nav>
+        <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <button class="active" id="mob-home" onclick="showPage('home', this, true)">🏠 Início</button>
+        <button id="mob-receitas" onclick="showPage('receitas', this, true)">📚 Receitas</button>
+        <button id="mob-nova" onclick="showPage('nova', this, true)">✏️ Nova Receita</button>
+        <button id="mob-busca" onclick="showPage('busca', this, true)">🔍 Buscar por Ingrediente</button>
+    </div>
+
+    <main>
+
+        <!-- ════ HOME ════ -->
+        <div id="page-home" class="page active">
+            <div class="hero">
+                <div class="hero-badge">🫙 Suas memórias culinárias em um só lugar</div>
+                <h1>Guarde suas receitas<br>com <em>carinho e simplicidade</em></h1>
+                <p>Um cantinho digital acolhedor para salvar, organizar e descobrir novas variações das suas receitas
+                    favoritas.</p>
+                <div class="hero-actions">
+                    <button class="btn btn-primary"
+                        onclick="showPage('nova', document.querySelector('nav button:nth-child(3)'))">✏️ Criar nova
+                        receita</button>
+                    <button class="btn btn-outline"
+                        onclick="showPage('receitas', document.querySelector('nav button:nth-child(2)'))">📚 Ver minhas
+                        receitas</button>
+                </div>
+            </div>
+
+            <div class="divider">✦ como funciona ✦</div>
+
+            <div
+                style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:1.2rem; margin-bottom: 2rem;">
+
+                <!-- Card 1: Anote -->
+                <div onclick="showPage('nova', document.getElementById('nav-nova'))"
+                    style="text-align:center; padding:1.5rem; background:var(--warm-white); border-radius:16px; border:1.5px solid var(--border); cursor:pointer; transition: all 0.22s; position:relative; overflow:hidden;"
+                    onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 28px rgba(90,50,10,0.12)';this.style.borderColor='var(--amber-light)'"
+                    onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='var(--border)'">
+                    <div style="font-size:2.5rem; margin-bottom:0.6rem;">✏️</div>
+                    <div
+                        style="font-family:'Playfair Display',serif; font-size:1.05rem; color:var(--brown); font-weight:700; margin-bottom:0.3rem;">
+                        Anote suas receitas</div>
+                    <div style="font-size:0.92rem; color:var(--text-light); margin-bottom:0.9rem;">Salve com título,
+                        ingredientes e modo de preparo</div>
+                    <div
+                        style="display:inline-block; background:var(--amber); color:white; font-size:0.8rem; font-weight:700; padding:0.25rem 0.8rem; border-radius:50px; letter-spacing:0.03em;">
+                        Criar receita →</div>
+                </div>
+
+                <!-- Card 2: Buscar por ingrediente -->
+                <div onclick="showPage('busca', document.getElementById('nav-busca'))"
+                    style="text-align:center; padding:1.5rem; background:var(--warm-white); border-radius:16px; border:1.5px solid var(--border); cursor:pointer; transition: all 0.22s; position:relative; overflow:hidden;"
+                    onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 28px rgba(90,50,10,0.12)';this.style.borderColor='var(--amber-light)'"
+                    onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='var(--border)'">
+                    <div style="font-size:2.5rem; margin-bottom:0.6rem;">🔍</div>
+                    <div
+                        style="font-family:'Playfair Display',serif; font-size:1.05rem; color:var(--brown); font-weight:700; margin-bottom:0.3rem;">
+                        Busque por ingrediente</div>
+                    <div style="font-size:0.92rem; color:var(--text-light); margin-bottom:0.9rem;">Tem ovo e farinha?
+                        Veja quais receitas você pode fazer!</div>
+                    <div
+                        style="display:inline-block; background:var(--green); color:white; font-size:0.8rem; font-weight:700; padding:0.25rem 0.8rem; border-radius:50px; letter-spacing:0.03em;">
+                        Buscar →</div>
+                </div>
+
+                <!-- Card 3: Minhas Receitas -->
+                <div onclick="showPage('receitas', document.getElementById('nav-receitas'))"
+                    style="text-align:center; padding:1.5rem; background:var(--warm-white); border-radius:16px; border:1.5px solid var(--border); cursor:pointer; transition: all 0.22s; position:relative; overflow:hidden;"
+                    onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 28px rgba(90,50,10,0.12)';this.style.borderColor='var(--amber-light)'"
+                    onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='var(--border)'">
+                    <div style="font-size:2.5rem; margin-bottom:0.6rem;">📚</div>
+                    <div
+                        style="font-family:'Playfair Display',serif; font-size:1.05rem; color:var(--brown); font-weight:700; margin-bottom:0.3rem;">
+                        Minhas Receitas</div>
+                    <div style="font-size:0.92rem; color:var(--text-light); margin-bottom:0.9rem;">Veja todas as suas
+                        receitas salvas em um só lugar</div>
+                    <div
+                        style="display:inline-block; background:var(--brown-light); color:white; font-size:0.8rem; font-weight:700; padding:0.25rem 0.8rem; border-radius:50px; letter-spacing:0.03em;">
+                        Ver receitas →</div>
+                </div>
+
+                <!-- Card 4: IA — Em breve -->
+                <div
+                    style="text-align:center; padding:1.5rem; background:var(--warm-white); border-radius:16px; border:1.5px dashed var(--border); position:relative; overflow:hidden; opacity:0.75;">
+                    <div
+                        style="position:absolute; top:0.7rem; right:0.7rem; background:var(--brown); color:var(--amber-pale); font-size:0.72rem; font-weight:700; padding:0.2rem 0.65rem; border-radius:50px; letter-spacing:0.06em;">
+                        EM BREVE</div>
+                    <div style="font-size:2.5rem; margin-bottom:0.6rem; filter:grayscale(0.4);">✨</div>
+                    <div
+                        style="font-family:'Playfair Display',serif; font-size:1.05rem; color:var(--brown); font-weight:700; margin-bottom:0.3rem;">
+                        Sugestões com IA</div>
+                    <div style="font-size:0.92rem; color:var(--text-light); margin-bottom:0.9rem;">A IA vai sugerir
+                        variações e novas ideias para você</div>
+                    <div
+                        style="display:inline-block; background:var(--border); color:var(--text-light); font-size:0.8rem; font-weight:700; padding:0.25rem 0.8rem; border-radius:50px; letter-spacing:0.03em;">
+                        Em breve…</div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ════ RECEITAS ════ -->
+        <div id="page-receitas" class="page">
+            <div class="section-title">📚 Minhas Receitas</div>
+            <div class="section-sub">Todas as suas receitas salvas com carinho</div>
+
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="🔍 Buscar receita…" oninput="renderRecipes()">
+                <button class="btn btn-primary btn-sm"
+                    onclick="showPage('nova', document.querySelector('nav button:nth-child(3)'))">+ Nova</button>
+            </div>
+
+            <div id="recipe-grid" class="recipe-grid"></div>
+        </div>
+
+        <!-- ════ DETALHE ════ -->
+        <div id="page-detalhe" class="page">
+            <div style="margin-bottom:1.2rem;">
+                <button class="btn btn-outline btn-sm"
+                    onclick="showPage('receitas', document.querySelector('nav button:nth-child(2)'))">← Voltar</button>
+            </div>
+            <div class="card-detail" id="detalhe-content"></div>
+        </div>
+
+        <!-- ════ NOVA / EDITAR ════ -->
+        <div id="page-nova" class="page">
+            <div class="section-title" id="form-title">✏️ Nova Receita</div>
+            <div class="section-sub">Preencha os campos abaixo — sem pressa!</div>
+
+            <div class="card-detail" style="max-width:100%">
+                <div class="form-group">
+                    <label>📌 Nome da receita</label>
+                    <input type="text" id="f-titulo" placeholder="Ex.: Bolo de cenoura da vovó">
+                </div>
+                <div class="form-group">
+                    <label>🥕 Ingredientes</label>
+                    <textarea id="f-ingredientes" rows="6" placeholder="Um por linha. Ex:
+2 xícaras de farinha
+3 ovos
+1 xícara de açúcar"></textarea>
+                    <div class="form-hint">Escreva cada ingrediente em uma linha separada</div>
+                </div>
+                <div class="form-group">
+                    <label>🍳 Modo de preparo</label>
+                    <textarea id="f-preparo" rows="8" placeholder="Descreva o passo a passo…"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>⏱️ Tempo de preparo (opcional)</label>
+                    <input type="text" id="f-tempo" placeholder="Ex.: 45 minutos">
+                </div>
+                <div class="form-group">
+                    <label>🏷️ Categoria (opcional)</label>
+                    <input type="text" id="f-categoria" placeholder="Ex.: Bolo, Salgado, Sobremesa…">
+                </div>
+
+                <div class="form-actions">
+                    <button class="btn btn-primary" onclick="saveRecipe()">💾 Salvar Receita</button>
+                    <button class="btn btn-outline" onclick="clearForm()">🗑️ Limpar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ════ BUSCA POR INGREDIENTE ════ -->
+        <div id="page-busca" class="page">
+            <div class="ai-page-box" style="max-width:100%">
+                <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.4rem;">
+                    <span style="font-size:1.6rem;">🔍</span>
+                    <h2 style="font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--brown);">Busca por
+                        Ingredientes</h2>
+                </div>
+                <div style="color:var(--text-light);font-size:0.95rem;margin-bottom:1.5rem;">
+                    Digite os ingredientes que você tem em casa e veja quais das suas receitas podem ser feitas!
+                </div>
+
+                <div class="form-group">
+                    <label>🥕 Quais ingredientes você tem?</label>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.8rem;" id="tags-container"></div>
+                    <div style="display:flex;gap:0.5rem;">
+                        <input type="text" id="ing-input" placeholder="Ex.: ovo, farinha, açúcar…"
+                            style="flex:1;padding:0.75rem 1rem;font-family:'Lora',serif;font-size:1rem;border:2px solid var(--border);border-radius:12px;background:var(--warm-white);color:var(--text);outline:none;">
+                        <button class="btn btn-primary" onclick="addTag()">+ Adicionar</button>
+                    </div>
+                    <div style="font-size:0.85rem;color:var(--text-light);margin-top:0.4rem;">Pressione Enter ou clique
+                        em Adicionar para incluir cada ingrediente</div>
+                </div>
+
+                <div style="display:flex;gap:0.8rem;flex-wrap:wrap;margin-bottom:1.5rem;">
+                    <button class="btn btn-green" onclick="searchByIngredients()">🔍 Buscar receitas</button>
+                    <button class="btn btn-outline btn-sm" onclick="clearTags()">✕ Limpar tudo</button>
+                </div>
+
+                <div id="busca-resultado"></div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Modal Apagar -->
+    <div class="modal-overlay" id="modal-apagar">
+        <div class="modal-box">
+            <span class="modal-icon">🗑️</span>
+            <div class="modal-title">Apagar receita?</div>
+            <div class="modal-recipe-name" id="modal-recipe-name"></div>
+            <div class="modal-desc">Essa ação não tem volta. Sua receita será apagada para sempre.</div>
+            <div class="modal-actions">
+                <button class="btn btn-outline" onclick="closeModal()">Cancelar</button>
+                <button class="btn btn-danger" id="modal-confirm-btn"
+                    style="background:var(--red-soft);color:white;">🗑️ Sim, apagar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
